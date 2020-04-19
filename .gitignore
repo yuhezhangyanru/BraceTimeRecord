@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/BraceTimeRecord/Library/*
+/BraceTimeRecord/Temp/*
+/BraceTimeRecord/obj/Debug/*
