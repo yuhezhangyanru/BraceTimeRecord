@@ -1,0 +1,2 @@
+# BraceTimeRecord
+BraceTimeRecord，用来记录隐形牙套的每日佩戴时间，帮助矫正的人养成严格的带牙套习惯
