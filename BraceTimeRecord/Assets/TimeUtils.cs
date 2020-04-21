@@ -5,9 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets
-{
-    class TimeUtils
+ public   class TimeUtils
     {
          
         //格式化时间的函数
@@ -18,5 +16,10 @@ namespace Assets
             float s = Mathf.FloorToInt(time - m * 60f - h * 3600f);
             return h.ToString("00") + "小时" + m.ToString("00") + "分" + s.ToString("00") +"秒";
         }
+
+
+        public static string getDate()
+        {
+            return System.DateTime.Now.ToShortDateString();
+        }
     }
-}

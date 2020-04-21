@@ -1,5 +1,4 @@
-﻿using Assets;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,9 @@ public class Main : MonoBehaviour
 
     private Vector3 pos;
     private int childIndex = 1;
+
+    //按钮绑定
+    public TakeTimeButton takeTimeButton;
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +29,18 @@ public class Main : MonoBehaviour
                 continue;
             }
             string tempName = array[index].Substring(Const.DATE_TIME_HEAD.Length);
+
             timeDic.Add(tempName, PlayerPrefs.GetFloat(array[index]));
         }
 
-        //yanruTODO 测试
-        for(int index = 0; index < 30; index ++)
-        {
-            timeDic.Add("测试日期" + index, index * 100);
-        }
+        ////yanruTODO 测试
+        //for (int index = 0; index < 30; index++)
+        //{
+        //    timeDic.Add("测试日期" + index, index * 100);
+        //}
 
         //初始化
-        for(int index =0; index < rectParent.childCount; index ++)
+        for (int index =0; index < rectParent.childCount; index ++)
         {
             rectParent.GetChild(index).gameObject.SetActive(false);
         }
@@ -49,9 +52,7 @@ public class Main : MonoBehaviour
         keyList.AddRange(timeDic.Keys);
         keyList.Reverse();
         for (int index = 0; index < keyList.Count; index ++ )
-        //foreach(KeyValuePair<string, float> item in timeDic)
         {
-
             ItemDateInfo itemTemp = GameObject.Instantiate(item0);
             itemTemp.name = "item_" + (childIndex ++);
             itemTemp.gameObject.SetActive(true);
@@ -61,7 +62,14 @@ public class Main : MonoBehaviour
 
             itemTemp.txtDate.text = keyList[index];
             itemTemp.txtTime.text = TimeUtils.GetTime(timeDic[keyList[index]]);
+
+
+            if (keyList[index].Equals(TimeUtils.getDate()))
+            {
+                takeTimeButton.itemToday = itemTemp;
+            }
         }
+        rectParent.sizeDelta = new Vector2(1063, Mathf.Abs(pos.y));
     }
      
 
